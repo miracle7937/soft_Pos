@@ -57,6 +57,7 @@ class _DXButtonState extends State<EPButton> {
                       widget.title ?? "",
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           fontWeight: FontWeight.bold,
+                          fontSize: 17,
                           color: widget.textColor ?? Colors.white),
                     )),
           // decoration: BoxDecoration(

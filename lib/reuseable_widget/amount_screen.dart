@@ -30,7 +30,7 @@ class _AmountScreenState extends State<AmountScreen> {
   var _inputLength = 6;
   var _inputList = <int>[];
   List<int> values = List.generate(9, (i) => i + 1)..add(0);
-  TextEditingController controller = TextEditingController(text: '₦ 0.0');
+  TextEditingController controller = TextEditingController(text: 'NGN 0.0');
   @override
   void initState() {
     if (widget.shuffle) {
@@ -45,16 +45,6 @@ class _AmountScreenState extends State<AmountScreen> {
     return Container(
       child: Column(
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(
-          //     vertical: 10,
-          //   ),
-          //   child: SizedBox(
-          //     height: 50,
-          //     width: 50,
-          //     // child: Image.asset(IVImages.ivShieldColored),
-          //   ),
-          // ),
           const SizedBox(
             height: 10,
           ),
@@ -240,11 +230,21 @@ class _AmountScreenState extends State<AmountScreen> {
     var amount = _inputList.join().isEmpty
         ? 0
         : double.parse(_inputList.join()).toCurrencyString(mantissaLength: 0);
-    controller.text = "₦${amount.toString()}";
+    controller.text = "NGN${amount.toString()}";
+    widget.codeVerify!(amount).whenComplete(() {
+      setState(() {});
+    }).then((onValue) async {
+      if (!mounted) return;
+      if (onValue) {
+        setState(() {});
+      } else {
+        setState(() {});
+      }
+    });
   }
 
   clearAll() {
-    controller.text = "₦0.0";
+    controller.text = "NGN0.0";
     _inputList.clear();
   }
 
