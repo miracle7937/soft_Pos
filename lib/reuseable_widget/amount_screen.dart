@@ -231,7 +231,8 @@ class _AmountScreenState extends State<AmountScreen> {
         ? 0
         : double.parse(_inputList.join()).toCurrencyString(mantissaLength: 0);
     controller.text = "NGN${amount.toString()}";
-    widget.codeVerify!(amount).whenComplete(() {
+    String _amount = _inputList.join();
+    widget.codeVerify!(int.parse(_amount).toString()).whenComplete(() {
       setState(() {});
     }).then((onValue) async {
       if (!mounted) return;
