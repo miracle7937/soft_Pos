@@ -1,0 +1,100 @@
+group 'com.enkpay.ep_softpos_plugin'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.6.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+            credentials { username "jp_iu426m6k793tts6nisfjg8at42" }
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        //noinspection DataBindingWithoutKapt
+        enabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+    ndkVersion '25.1.8937393'
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.databinding:databinding-runtime:8.0.1'
+
+    //preference
+    implementation 'com.pixplicity.easyprefs:EasyPrefs:1.10.0'
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    // Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // Rx
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // Dependencies for Netpos Payment client
+    implementation "com.github.Netplus2:epmsLibrary:1.0.1"
+    implementation 'com.github.Netplus2:nibssclient:1.0.1'
+    implementation 'com.github.netplusTeam:contactless-sdk:1.0.19'
+    implementation 'androidx.work:work-runtime-ktx:2.8.1'
+
+    // Room components
+    implementation "androidx.room:room-runtime:2.4.0"
+    annotationProcessor "androidx.room:room-compiler:2.4.0"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.4.0"
+    implementation 'net.sf.j8583:j8583:1.5.2'
+
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
+
+
+}
+//Thanks for using https://jar-download.com

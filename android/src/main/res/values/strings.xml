@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">NetposContactlessSdkJava</string>
+    <string name="your_response_will_appear_here">Your response will appear here</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="check_balance">Check Balance</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="configuring_terminal">Configuring terminal...</string>
+    <string name="terminal_config_failed">Terminal configuration failed</string>
+    <string name="terminal_configured">Terminal configured successfully</string>
+    <string name="processing_payment">Processing Payment...</string>
+    <string name="terminal_not_configured">Terminal has not been configured, try again</string>
+    <string name="checking_balance">Enquiring balance...</string>
+    <string name="amount_is_empty">Amount is empty</string>
+    <string name="enter_valid_amount">Please enter a valid amount</string>
+    <string name="processing_transaction">Processing transaction</string>
+    <string name="transaction_approved">Transaction Approved</string>
+    <string name="transaction_decline">Transaction Decline</string>
+</resources>
