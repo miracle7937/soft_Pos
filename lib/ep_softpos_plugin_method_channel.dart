@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'ep_softpos_plugin_platform_interface.dart';
@@ -17,9 +18,10 @@ class MethodChannelEpSoftposPlugin extends EpSoftposPluginPlatform {
   }
 
   @override
-  Future launchSDK() async {
-    final version = await methodChannel.invokeMethod('launchSDK');
-    return version;
+  Future launchSDK(BuildContext context) async {
+    // final version = await methodChannel.invokeMethod('launchSDK');
+    // return version;
+    // InAppPOS().start(context, "20");
   }
 
   // @override

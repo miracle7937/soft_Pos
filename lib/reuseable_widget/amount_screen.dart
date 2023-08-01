@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:intl/intl.dart';
 
 import '../constant/color.dart';
+import '../utils/null_checker.dart';
 
 typedef DeleteCode = void Function();
 typedef CodeVerify = Function(String code);
@@ -30,7 +31,7 @@ class _AmountScreenState extends State<AmountScreen> {
   var _inputLength = 6;
   var _inputList = <int>[];
   List<int> values = List.generate(9, (i) => i + 1)..add(0);
-  TextEditingController controller = TextEditingController(text: 'NGN 0.0');
+  TextEditingController controller = TextEditingController(text: 'NGN 0');
   @override
   void initState() {
     if (widget.shuffle) {
@@ -227,11 +228,13 @@ class _AmountScreenState extends State<AmountScreen> {
   }
 
   checkingEmptyValue() {
-    var amount = _inputList.join().isEmpty
-        ? 0
-        : double.parse(_inputList.join()).toCurrencyString(mantissaLength: 0);
-    controller.text = "NGN${amount.toString()}";
-    String _amount = _inputList.join();
+    print("hello ${_inputList.join()}");
+    var amount =
+        _inputList.join().isEmpty ? "NGN 0" : moneyFormatter(_inputList.join());
+    controller.text = amount;
+    String _amount = _inputList.isEmpty ? "0" : _inputList.join();
+    setState(() {});
+
     widget.codeVerify!(int.parse(_amount).toString()).whenComplete(() {
       setState(() {});
     }).then((onValue) async {
@@ -244,8 +247,21 @@ class _AmountScreenState extends State<AmountScreen> {
     });
   }
 
+  String moneyFormatter(String? amount) {
+    if (isEmpty(amount)) {
+      return "0";
+    }
+
+    NumberFormat currencyFormatter = NumberFormat.currency(
+      locale: 'en_US', // Replace with your desired locale
+      symbol: 'NGN ', // Replace with your desired currency symbol
+      decimalDigits: 0, // Number of decimal places
+    );
+    return currencyFormatter.format(int.parse(amount!));
+  }
+
   clearAll() {
-    controller.text = "NGN0.0";
+    controller.text = "NGN0";
     _inputList.clear();
   }
 
@@ -265,6 +281,7 @@ class _AmountScreenState extends State<AmountScreen> {
       return;
     }
     _inputList.removeLast();
+
     checkingEmptyValue();
   }
 
@@ -274,7 +291,7 @@ class _AmountScreenState extends State<AmountScreen> {
     }
     _inputList.add(value);
     String _amount = _inputList.join();
-    controller.text = "₦${_amount.toString()}";
+    controller.text = moneyFormatter(_amount);
     setState(() {});
 
     widget.codeVerify!(_amount).whenComplete(() {

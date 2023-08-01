@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ep_softpos_plugin/ep_softpos_plugin.dart';
+import 'package:ep_softpos_plugin/in_ap/In_app_pos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -53,24 +54,27 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              RaisedButton(
-                child: Text("Launch"),
-                onPressed: () {
-                  _epSoftposPlugin.launchSDK();
-                },
-              ),
-              RaisedButton(
-                child: Text("payment"),
-                onPressed: () {
-                  _epSoftposPlugin.ePayment(amount: "200", userID: "20");
-                },
-              )
-            ],
-          ),
-        ),
+        body: Builder(builder: (context) {
+          return Center(
+            child: Column(
+              children: [
+                RaisedButton(
+                  child: Text("Launch"),
+                  onPressed: () {
+                    InAppPOS().start(context, "20");
+                    // _epSoftposPlugin.launchSDK(context);
+                  },
+                ),
+                RaisedButton(
+                  child: Text("payment"),
+                  onPressed: () {
+                    _epSoftposPlugin.ePayment(amount: "200", userID: "20");
+                  },
+                )
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

@@ -15,20 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
-  base58check:
-    dependency: transitive
-    description:
-      name: base58check
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-  bech32:
-    dependency: transitive
-    description:
-      name: bech32
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -111,13 +97,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  flutter_multi_formatter:
-    dependency: transitive
-    description:
-      name: flutter_multi_formatter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.11.5"
   flutter_riverpod:
     dependency: transitive
     description:

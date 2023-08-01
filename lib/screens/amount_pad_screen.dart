@@ -41,9 +41,10 @@ class _PosAmountScreenState extends State<PosAmountScreen> {
                 }),
             EPButton(
               onTap: () {
-                if (num.tryParse(amount)! < 0) {
+                if (num.tryParse(amount)! < 200) {
                   customSnackBar(context,
-                      message: "please check your amount.....");
+                      message:
+                          "Transactions below NGN200 cannot be processed, please.");
                 } else {
                   Navigator.pop(context);
                   widget.onSelectAmount!(amount);

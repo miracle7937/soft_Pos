@@ -13,14 +13,6 @@ class InAppPOS {
                   transactionType: TransactionType.purchase,
                   onSelectAmount: (amount) {
                     EpSoftposPlugin().ePayment(amount: amount, userID: userId);
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (_) => InAppPOSAccountSelectionScreen(
-                    //               onSelectAccountType: (accountType) {
-                    //
-                    //               },
-                    //             )));
                   },
                 )));
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'ep_softpos_plugin_method_channel.dart';
@@ -16,7 +17,7 @@ abstract class EpSoftposPluginPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<void> launchSDK() {
+  Future<void> launchSDK(BuildContext context) {
     throw UnimplementedError('launchSDK has not been implemented.');
   }
 
